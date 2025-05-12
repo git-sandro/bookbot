@@ -15,8 +15,7 @@ def sort_on(dict):
     return dict["amount"]
 
 def print_report(book_text, filepath):
-    chars_dictonary = count_amount_chars(book_text)
-    list_dictonary = []
+    keys_n_values = count_amount_chars(book_text)
     sorted_list = []  
     print_entry = ""  
 
@@ -24,14 +23,10 @@ def print_report(book_text, filepath):
     word_count = "----------- Word Count ----------\nFound " + str(count_words(book_text)) + " total words\n"
     character_count = "--------- Character Count -------\n"
 
-    for dictonary in chars_dictonary:
-        list_dictonary.append([dictonary, chars_dictonary[dictonary]])
-
-    for key_value in list_dictonary:
-        sorted_list.append({"char": key_value[0], "amount": key_value[1]})
+    for key_value in keys_n_values:
+        sorted_list.append({"char": key_value, "amount": keys_n_values[key_value]})
     
     sorted_list.sort(reverse=True, key=sort_on)
-    #del sorted_list[0]
 
     for entry in sorted_list:
         if entry["char"].isalpha() and entry["char"] != "\n":
